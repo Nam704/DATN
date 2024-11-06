@@ -26,7 +26,7 @@ return new class extends Migration
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
-            $table->foreign('color_id')->references('id')->on('colorss')->onDelete('cascade');
+            $table->foreign('color_id')->references('id')->on('colors')->onDelete('cascade');
             $table->foreign('ram_id')->references('id')->on('rams')->onDelete('cascade');
             $table->foreign('rom_id')->references('id')->on('roms')->onDelete('cascade');
         });
