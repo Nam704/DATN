@@ -18,5 +18,8 @@
     <li>
         <a href="{{ route('admin.userRoles.list') }}">userRoles</a>
     </li>
+    <li>
+        <a href="{{ route('admin.category.list') }}">Category</a>
+    </li>
 
 </ul>

@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\AuthenticateController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DecentralizationController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RoleHasPermissionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserHasRoleController;
+use Database\Factories\CategoryFactory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
@@ -54,4 +56,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
     );
     Route::get('login', [AuthenticateController::class, 'getFormLogin'])->name('getFormLogin');
     Route::post('login', [AuthenticateController::class, 'login'])->name('login');
+
+    Route::prefix('category')->name('category.')->group(
+        function(){ 
+            Route::get('/list',[CategoryController::class, 'list'])->name('list');
+            Route::get('/add',[CategoryController::class, 'getFormAdd'])->name('getFormAdd');
+            Route::post('/addCategory',[CategoryController::class, 'add'])->name('add');
+            Route::get('/edit/{id}',[CategoryController::class, 'editCategory'])->name('editCategory');
+            Route::put('/editCategory/{id}',[CategoryController::class, 'edit'])->name('edit');
+            Route::delete('/deleteCategory/{id}',[CategoryController::class, 'delete'])->name('delete');
+            Route::get('/restore/{id}',[CategoryController::class, 'restore'])->name('restore');
+        }
+    );
 });
