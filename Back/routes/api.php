@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserHasRoleController;
@@ -22,3 +23,9 @@ use App\Http\Controllers\Api\UserHasRoleController;
 
 
 Route::get('/getUserRole/{userId}', [UserHasRoleController::class, 'getUserRole']);
+Route::prefix('/categories')->group(function() {
+Route::get('/transhed-category',[CategoryController::class, 'showTrashedCategories'])->name('showTrashedCategories');
+Route::post('/restore/{id}',[CategoryController::class, 'restore'])->name('restore');
+
+
+});
