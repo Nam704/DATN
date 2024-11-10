@@ -19,14 +19,15 @@
         <tr>
             <td>{{ $key + 1 }}</td>
             <td>{{ $value->name }}</td>
+            
             <td>
-                <a href="{{ route('admin.category.editCategory',$value->id) }}">Edit</a>
-                <a href="">detail</a>
+                <a href="{{ route('admin.category.editCategory',$value->id) }}" class="btn btn-">Edit</a>
+                
                 
                 <form action="{{ route('admin.category.delete',$value->id) }}" method="post">
                     @method('delete')
                     @csrf
-                    <button onclick=" return confirm('Bạn Có Đông Ý Xóa Danh Mục Này')">delete</button>
+                    <button onclick=" return confirm('Bạn Có Đông Ý Xóa Danh Mục Này')" class="btn btn-danger">delete</button>
                 </form>
             </td>
            
