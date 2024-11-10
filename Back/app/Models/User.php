@@ -28,7 +28,7 @@ class User extends Authenticatable
     protected $dates = ['deleted_at'];
     public function listUser()
     {
-        return $users = $this->query()->select('name', 'email')->latest('id')->paginate(10);
+        return $users = $this->query()->select('id', 'name', 'email')->latest('id')->paginate(10);
     }
     // Trong model User
     public function isAdmin(): bool

@@ -1,3 +1,4 @@
+<a href="{{ route('admin.rolePermissions.getFormAdd') }}">Add new permission to role</a>
 <table border="1">
     <thead>
         <tr>
@@ -21,3 +22,4 @@
         @endforeach
     </tbody>
 </table>
+<a href="{{ route('dashboard') }}">back to dashboard</a>

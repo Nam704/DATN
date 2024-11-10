@@ -17,4 +17,6 @@ class RoleController extends Controller
         $roles = $this->role->listRole();
         return view('role.list', compact('roles'));
     }
+    function getFormAdd()
+    { }
 }

@@ -22,3 +22,4 @@
     </tbody>
 </table>
 {{ $permissions->links() }}
+<a href="{{ route('dashboard') }}">back to dashboard</a>
