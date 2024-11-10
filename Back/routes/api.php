@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\RamController;
+use App\Http\Controllers\Api\RomController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserHasRoleController;
@@ -33,5 +34,10 @@ Route::post('/restore/{id}',[CategoryController::class, 'restore'])->name('resto
 Route::prefix('/rams')->group(function() {
     Route::get('/transhed-ram',[RamController::class, 'showTrashedRam'])->name('showTrashedRam');
     Route::post('/restore/{id}',[RamController::class, 'restore'])->name('restore');
+    
+});
+Route::prefix('/roms')->group(function() {
+    Route::get('/transhed-rom',[RomController::class, 'showTrashedRom'])->name('showTrashedRom');
+    Route::post('/restore/{id}',[RomController::class, 'restore'])->name('restore');
     
 });
