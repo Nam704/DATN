@@ -21,3 +21,4 @@
         @endforeach
     </tbody>
 </table>
+<a href="{{ route('dashboard') }}">back to dashboard</a>

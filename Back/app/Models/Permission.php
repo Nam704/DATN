@@ -11,6 +11,10 @@ class Permission extends Model
     protected $fillable = ['name', 'display_name', 'guard_name'];
     public function listPermission()
     {
-        return $permissions = $this->query()->select('id', 'name', 'display_name', 'guard_name')->latest('id')->paginate(10);
+        return $permissions = $this->query()->select('id', 'name', 'display_name', 'guard_name')->latest('id')->paginate(20);
+    }
+    public function listPermissionID()
+    {
+        return $permissions = $this->pluck('id')->toArray();
     }
 }

@@ -23,12 +23,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('admin.dashboard');
-});
+})->name('dashboard');
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::prefix('users')->name('users.')->group(function () {
         Route::get('list', [UserController::class, 'listUser'])->name('list');
+        Route::get('/add', [UserController::class, 'getFormAdd'])->name('getFormAdd');
+        Route::post('/add', [UserController::class, 'add'])->name('add');
+        Route::delete('/delete/{user}', [UserController::class, 'destroy'])->name('destroy');
+        Route::get('/update/{user}', [UserController::class, 'getFormUpdate'])->name('getFormUpdate');
+        Route::put('/update/{user}', [UserController::class, 'editUser'])->name('update');
     });
     Route::prefix('roles')->name('roles.')->group(function () {
+        Route::get('/add', [RoleController::class, 'getFormAdd'])->name('getFormAdd');
+
         Route::get('list', [RoleController::class, 'listRole'])->name('list');
     });
     Route::prefix('permissions')->name('permissions.')->group(function () {
@@ -36,11 +43,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
     Route::prefix('role-has-permission')->name('rolePermissions.')->group(
         function () {
+            Route::get('/add', [RoleHasPermissionController::class, 'getFormAdd'])->name('getFormAdd');
+
             Route::get('/list', [RoleHasPermissionController::class, 'list'])->name('list');
         }
     );
     Route::prefix('user-has-role')->name('userRoles.')->group(
         function () {
+
             Route::get('/list', [UserHasRoleController::class, 'list'])->name('list');
         }
     );
