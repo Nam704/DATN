@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\RamController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserHasRoleController;
@@ -27,5 +28,10 @@ Route::prefix('/categories')->group(function() {
 Route::get('/transhed-category',[CategoryController::class, 'showTrashedCategories'])->name('showTrashedCategories');
 Route::post('/restore/{id}',[CategoryController::class, 'restore'])->name('restore');
 
+});
 
+Route::prefix('/rams')->group(function() {
+    Route::get('/transhed-ram',[RamController::class, 'showTrashedRam'])->name('showTrashedRam');
+    Route::post('/restore/{id}',[RamController::class, 'restore'])->name('restore');
+    
 });

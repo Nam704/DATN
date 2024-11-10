@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthenticateController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DecentralizationController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RamController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RoleHasPermissionController;
 use App\Http\Controllers\UserController;
@@ -66,6 +67,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::put('/editCategory/{id}',[CategoryController::class, 'edit'])->name('edit');
             Route::delete('/deleteCategory/{id}',[CategoryController::class, 'delete'])->name('delete');
             Route::get('/restore/{id}',[CategoryController::class, 'restore'])->name('restore');
+        }
+    );
+    Route::prefix('rams')->name('rams.')->group(
+        function(){ 
+            Route::get('/list',[RamController::class, 'list'])->name('list');
+            Route::get('/getFormAdd',[RamController::class, 'getFormAdd'])->name('getFormAdd');
+            Route::post('/add',[RamController::class, 'add'])->name('add');
+            Route::get('/edit/{id}',[RamController::class, 'editRam'])->name('editRam');
+            Route::put('/edit/{id}',[RamController::class, 'edit'])->name('edit');
+            Route::delete('/delete/{id}',[RamController::class, 'delete'])->name('delete');
+
         }
     );
 });

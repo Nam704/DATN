@@ -26,7 +26,7 @@ class CategoryController extends Controller
         ];
         Category::Create($data);
         return redirect()->route('admin.category.list')->with([
-            'success' => 'Thêm thành công'
+            'success' => 'new successful additions'
 
         ]);
     }
@@ -47,7 +47,7 @@ class CategoryController extends Controller
         ];
         $editCategory-> update($data);
         return redirect()->route('admin.category.list')->with([
-            'success' => 'sửa thành công'
+            'success' => 'Successfully repaired'
 
         ]);
     }
@@ -58,7 +58,7 @@ class CategoryController extends Controller
         $category ->delete();
 
         return redirect()->route('admin.category.list')->with([
-            'delete' => 'xóa thành công'
+            'delete' => 'Successfully deleted'
 
         ]);
     }

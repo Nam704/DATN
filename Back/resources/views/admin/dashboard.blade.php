@@ -20,6 +20,10 @@
     </li>
     <li>
         <a href="{{ route('admin.category.list') }}">Category</a>
+
+    </li>
+    <li>
+        <a href="{{ route('admin.rams.list') }}">Ram</a>
     </li>
 
 </ul>
