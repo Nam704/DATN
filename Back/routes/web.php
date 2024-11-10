@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthenticateController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ColorController;
 use App\Http\Controllers\DecentralizationController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RamController;
@@ -88,6 +89,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/edit/{id}', [RomController::class, 'editRom'])->name('editRom');
             Route::put('/edit/{id}', [RomController::class, 'edit'])->name('edit');
             Route::delete('/delete/{id}', [RomController::class, 'delete'])->name('delete');
+        }
+    );
+
+    Route::prefix('colors')->name('colors.')->group(
+        function(){
+            Route::get('/list',[ColorController::class, 'list'])->name('list');
+            Route::get('/getFormAdd', [ColorController::class, 'getFormAdd'])->name('getFormAdd');
+            Route::post('/add', [ColorController::class, 'add'])->name('add');
+            Route::get('/edit/{id}', [ColorController::class, 'editColor'])->name('editColor');
+            Route::put('/edit/{id}', [ColorController::class, 'edit'])->name('edit');
+
         }
     );
 });
