@@ -11,6 +11,8 @@ use App\Models\User;
 class DecentralizationController extends Controller
 {
     protected $user;
+    protected $role;
+
     function __construct()
     {
         $this->user = new User();

@@ -18,5 +18,15 @@
     <li>
         <a href="{{ route('admin.userRoles.list') }}">userRoles</a>
     </li>
+    <li>
+        <a href="{{ route('admin.category.list') }}">Category</a>
+
+    </li>
+    <li>
+        <a href="{{ route('admin.rams.list') }}">Ram</a>
+    </li>
+    <li>
+        <a href="{{ route('admin.roms.list') }}">Rom</a>
+    </li>
 
 </ul>
