@@ -1,3 +1,14 @@
-<div>
-    <!-- The best way to take care of the future is to take care of the present moment. - Thich Nhat Hanh -->
-</div>
+<h2>
+    edit user
+</h2>
+<form action="{{ route('admin.users.update',$user) }}" method="POST">
+    @csrf
+    @method('put')
+    <input type="text" name="name" placeholder="name" value="{{ old('name',$user->name) }}">
+    <input type="text" name="email" placeholder="email" value="{{ old('email',$user->email) }}">
+    <a href=""><button>reset password</button></a>
+    <input type="hidden" name="status" value="0">
+    <input type="checkbox" name="status" value="" {{ !$user->status ? "checked" : "" }}> Active
+
+    <button type="submit">edit</button>
+</form>

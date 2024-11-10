@@ -1,8 +1,13 @@
 <?php
 
+
+use App\Http\Controllers\Api\PermissionController;
+use App\Http\Controllers\Api\RoleHasPermissionController;
+
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\RamController;
 use App\Http\Controllers\Api\RomController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserHasRoleController;
@@ -23,6 +28,16 @@ use App\Http\Controllers\Api\UserHasRoleController;
 
 
 
+ 
+Route::prefix('role-has-permission')->group(function () {
+    Route::post('/add', [RoleHasPermissionController::class, 'add']);
+    Route::get('/list-permission-for-role-id/{id}', [RoleHasPermissionController::class, 'listPermissionForRoleID']);
+});
+Route::prefix('permissions')->name('permissions.')->group(function () {
+    Route::get('/list', [PermissionController::class, 'listPermission'])->name('list');
+});
+Route::get('/getUserRole/{userId}', [UserHasRoleController::class, 'getUserRole']);
+
 
 Route::get('/getUserRole/{userId}', [UserHasRoleController::class, 'getUserRole']);
 Route::prefix('/categories')->group(function() {
@@ -41,3 +56,4 @@ Route::prefix('/roms')->group(function() {
     Route::post('/restore/{id}',[RomController::class, 'restore'])->name('restore');
     
 });
+

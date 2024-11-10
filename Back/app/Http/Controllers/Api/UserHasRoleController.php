@@ -10,7 +10,7 @@ class UserHasRoleController extends Controller
 {
     public function getUserRole($userId)
     {
-        // Tìm role cho user theo ID
+        // Tìm roleho user theo ID
         $userRole = UserHasRole::where('user_id', $userId)->first();
 
         if ($userRole) {

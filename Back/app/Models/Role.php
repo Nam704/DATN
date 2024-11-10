@@ -11,6 +11,6 @@ class Role extends Model
     protected $fillable = ['name', 'display_name', 'guard_name'];
     public function listRole()
     {
-        return $roles = $this->query()->select('name', 'display_name', 'guard_name')->latest('id')->paginate(10);
+        return $roles = $this->query()->select('id', 'name', 'display_name', 'guard_name')->latest('id')->get();
     }
 }
