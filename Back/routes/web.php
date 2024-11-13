@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthenticateController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ColorController;
 use App\Http\Controllers\DecentralizationController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RamController;
@@ -38,9 +40,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put('/update/{user}', [UserController::class, 'editUser'])->name('update');
     });
     Route::prefix('roles')->name('roles.')->group(function () {
-        Route::get('/add', [RoleController::class, 'getFormAdd'])->name('getFormAdd');
-
         Route::get('list', [RoleController::class, 'listRole'])->name('list');
+        Route::get('/add', [RoleController::class, 'getFormAdd'])->name('getFormAdd');
+        Route::post('/add',[RoleController::class,'add'])->name('add');
+        Route::get('/edit/{id}', [RoleController::class, 'editRole'])->name('editRole');
+        Route::put('/edit/{id}',[RoleController::class,'edit'])->name('edit');
+        Route::delete('/delete/{id}',[RoleController::class,'delete'])->name('delete');
+    
+    
     });
     Route::prefix('permissions')->name('permissions.')->group(function () {
         Route::get('list', [PermissionController::class, 'listPermission'])->name('list');
@@ -98,6 +105,29 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/edit/{id}', [RomController::class, 'editRom'])->name('editRom');
             Route::put('/edit/{id}', [RomController::class, 'edit'])->name('edit');
             Route::delete('/delete/{id}', [RomController::class, 'delete'])->name('delete');
+        }
+    );
+
+    Route::prefix('colors')->name('colors.')->group(
+        function(){
+            Route::get('/list',[ColorController::class, 'list'])->name('list');
+            Route::get('/getFormAdd', [ColorController::class, 'getFormAdd'])->name('getFormAdd');
+            Route::post('/add', [ColorController::class, 'add'])->name('add');
+            Route::get('/edit/{id}', [ColorController::class, 'editColor'])->name('editColor');
+            Route::put('/edit/{id}', [ColorController::class, 'edit'])->name('edit');
+            Route::delete('/delete/{id}',[ColorController::class, 'deleteColor'])->name('deleteColor');
+
+        }
+    );
+    Route::prefix('brands')->name('brands.')->group(
+        function(){
+            Route::get('/list',[BrandController::class, 'list'])->name('list');
+            Route::get('/getFormAdd', [BrandController::class, 'getFormAdd'])->name('getFormAdd');
+            Route::post('/add', [BrandController::class, 'add'])->name('add');
+            Route::get('/edit/{id}', [BrandController::class, 'editBrand'])->name('editBrand');
+            Route::put('/edit/{id}', [BrandController::class, 'edit'])->name('edit');
+            Route::delete('/delete/{id}',[BrandController::class, 'deleteBrand'])->name('deleteBrand');
+
         }
     );
 });

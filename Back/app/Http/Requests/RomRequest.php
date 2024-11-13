@@ -22,12 +22,14 @@ class RomRequest extends FormRequest
      */
     public function rules(): array
     {
+        
+        $idRom = $this->route('id')? $this->route('id'):"";
+
         return [
-            'rom_size' => [
-                'required',
-                'integer','max:2048','min:1',
-                Rule::unique('roms', 'rom_size')
-                ] 
+            'rom_size' =>
+                'required|unique:roms,rom_size',
+                'integer','max:2048','min:1'.$idRom,
+                
         ];
     }
     public function messages(): array {

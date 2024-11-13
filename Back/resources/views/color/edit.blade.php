@@ -1,3 +1,19 @@
 <div>
-    <!-- Waste no more time arguing what a good man should be, be one. - Marcus Aurelius -->
+    <a href="{{ route('admin.colors.list') }}">Back</a>
+    <!-- The best way to take care of the future is to take care of the present moment. - Thich Nhat Hanh -->
+
+<form action="{{ route('admin.colors.edit',$color->id) }}" method="post" >
+    @method('put')
+    @csrf
+    name:
+    <input type="text" name="name" id="name" class="form-control" value="{{ $color->name }}">
+    @error('name')
+    
+        
+    @enderror
+   
+    <button >Submit</button>
+   
+</form>
+
 </div>
