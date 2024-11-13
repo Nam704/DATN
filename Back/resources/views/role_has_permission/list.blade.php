@@ -15,7 +15,9 @@
             <td>{{ $item->role->display_name }}</td>
             <td>{{ $item->permission->display_name }}</td>
             <td>
-                <button>temp</button>
+                <a href="{{ route('admin.rolePermissions.getFormEdit',$item->role->id) }}"><button
+                        class="btn-edit">Edit</button></a>
+
             </td>
         </tr>
 

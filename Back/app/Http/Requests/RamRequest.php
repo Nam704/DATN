@@ -28,12 +28,14 @@ class RamRequest extends FormRequest
 
         $idRam = $this->route('id') ? $this->route('id') : "";
         return [
+
             'ram_size' =>
             'required|unique:rams,ram_size',
             'integer',
             'max:16',
             'min:1'
           . $idRam,
+
 
 
         ];
