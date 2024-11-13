@@ -1,5 +1,6 @@
 <div>
-    <!-- Nothing in life is to be feared, it is only to be understood. Now is the time to understand more, so that we may fear less. - Marie Curie -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <a href="{{ route('admin.colors.getFormAdd') }}">Create</a>
 <table class="table table-hover">
     <thead>
@@ -17,7 +18,11 @@
             <td>{{$value->name}}</td>
             <td>
                 <a href="{{ route('admin.colors.editColor',$value->id) }}">Edit</a>
-                <a href="">Delete</a>
+                <form action="{{ route('admin.colors.deleteColor',$value->id) }}" method="post">
+                    @method('delete')
+                    @csrf
+                    <button onclick="return confirm('Are you sure you want to delete this data')">Delete</button>
+                </form>
     
             </td>
         </tr>
@@ -26,6 +31,12 @@
     </tbody>
    
 </table>
+{{ $list->links() }}
 
+<button id="delete">Story Delete</button>
+<script src="{{ asset('js/color-list-sofdelete.js') }}"></script>
+<div class="show">
+    
+</div>
 
 </div>

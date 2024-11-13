@@ -4,20 +4,20 @@ $(document).ready(function () {
 
 
         $.ajax({
-            url: "http://127.0.0.1:8000/api/categories/transhed-category",
+            url: "http://127.0.0.1:8000/api/brands/tranShed-brand",
             method: "GET",
             success: function (response) {
                 // Lấy danh sách các category từ response
-                let categories = response.data;
+                let brands = response.data;
 
                 // Xây dựng nội dung HTML cho bảng
                 let tableContent = '';
-                $.each(categories, function (index, category) {
+                $.each(brands, function (index, brand) {
                     tableContent +=
                         '<tr>' +
                         '<td>' + (index + 1) + '</td>' +
-                        '<td>' + category.name + '</td>' +
-                        '<td><button class="restore" data-id="' + category.id + '">Restore</button></td>' +
+                        '<td>' + brand.name + '</td>' +
+                        '<td><button class="restore" data-id="' + brand.id + '">Restore</button></td>' +
                         '</tr>';
                 });
 
@@ -25,16 +25,16 @@ $(document).ready(function () {
                 $('.show').html(tableContent);
             },
             error: function () {
-                console.log("Error retrieving trashed categories.");
+                console.log("Error retrieving trashed brands.");
             }
         });
     });
     // restore
     $(document).on("click", ".restore", function () {
-        let categoryId = $(this).data("id");
+        let brandId = $(this).data("id");
 
         $.ajax({
-            url: "http://127.0.0.1:8000/api/categories/restore/" + categoryId,
+            url: "http://127.0.0.1:8000/api/brands/restore/" + brandId,
             method: "post",
             headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRF token bảo mật
@@ -47,7 +47,7 @@ $(document).ready(function () {
                 location.reload();
             },
             error: function () {
-                console.log("Error restoring category.");
+                console.log("Error restoring brand.");
             }
         });
     });

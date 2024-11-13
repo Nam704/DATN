@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ColorRequest;
+use App\Models\Category;
 use App\Models\Color;
 use Illuminate\Http\Request;
 
@@ -39,4 +40,15 @@ class ColorController extends Controller
         return redirect()->route('admin.colors.list');
     }
     
+
+    public function deleteColor($id){
+        $delete = Color::find($id);
+        $delete -> delete();
+        return redirect()->route('admin.colors.list')->with(
+            [
+                'massage' => 'Successfully deleted'
+            ]
+        );
+    }
+
 }

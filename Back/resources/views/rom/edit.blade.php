@@ -8,6 +8,11 @@
             rom_site:
 
             <input type="number" name="rom_size" class="form-controll" id="rom_size" value="{{ $rom->rom_size }}">
+        @error('rom_size')
+        {{ $message }}
+            
+        @enderror
+        
         </div>
         <button>Submit</button>
 

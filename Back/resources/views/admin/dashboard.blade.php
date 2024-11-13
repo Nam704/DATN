@@ -31,5 +31,8 @@
     <li>
         <a href="{{ route('admin.colors.list') }}">Color</a>
     </li>
+    <li>
+        <a href="{{ route('admin.brands.list') }}">Brand</a>
+    </li>
 
 </ul>
