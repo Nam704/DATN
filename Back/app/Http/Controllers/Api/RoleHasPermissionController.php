@@ -41,4 +41,15 @@ class RoleHasPermissionController extends Controller
             "message" => "added successfully"
         ]);
     }
+    function destroy(Request $request)
+    {
+        $idRole = $request->input("role_id");
+        $idPermission = $request->input("permission_id");
+        $roleHasPermission = $this->roleHasPermission->findRoleHasPermission($idRole, $idPermission);
+        $roleHasPermission->delete();
+        return response()->json([
+            // "data" => [$roleHasPermission],
+            "message" => "added successfully"
+        ]);
+    }
 }

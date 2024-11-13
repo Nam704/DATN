@@ -17,4 +17,8 @@ class Permission extends Model
     {
         return $permissions = $this->pluck('id')->toArray();
     }
+    public function getDisplayName($id)
+    {
+        return $permission = $this->query()->select('display_name')->where('id', $id)->first();
+    }
 }

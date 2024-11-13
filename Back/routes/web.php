@@ -48,6 +48,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::prefix('role-has-permission')->name('rolePermissions.')->group(
         function () {
             Route::get('/add', [RoleHasPermissionController::class, 'getFormAdd'])->name('getFormAdd');
+            Route::get('/edit/{id}', [RoleHasPermissionController::class, 'getFormEdit'])->name('getFormEdit');
+
 
             Route::get('/list', [RoleHasPermissionController::class, 'list'])->name('list');
         }

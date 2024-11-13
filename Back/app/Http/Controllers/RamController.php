@@ -8,15 +8,18 @@ use Illuminate\Http\Request;
 
 class RamController extends Controller
 {
-    public function list(){
+    public function list()
+    {
         $list = Ram::paginate(5);
-        return view('./ram.list',compact('list'));
+        return view('./ram.list', compact('list'));
     }
-    public function getFormAdd(){
+    public function getFormAdd()
+    {
         return view('ram.add');
     }
-    public function add(RamRequest $req){
-       
+    public function add(RamRequest $req)
+    {
+
         $data = [
             'ram_size' => $req->ram_size
         ];
@@ -26,13 +29,14 @@ class RamController extends Controller
                 'success' => 'new successful additions'
             ]
         );
-
     }
-    public function editRam($id){
+    public function editRam($id)
+    {
         $ram = Ram::find($id);
-        return view('ram.edit',compact('ram'));
+        return view('ram.edit', compact('ram'));
     }
-    public function edit($id , Request $req){
+    public function edit($id, RamRequest $req)
+    {
         $ram = Ram::find($id);
         $data = [
             'ram_size' => $req->ram_size
@@ -43,9 +47,9 @@ class RamController extends Controller
                 'success' => 'Successfully repaired'
             ]
         );
-
     }
-    public function delete($id){
+    public function delete($id)
+    {
         $delete = Ram::find($id);
         $delete->delete();
         return redirect()->route('admin.rams.list')->with(
@@ -54,6 +58,4 @@ class RamController extends Controller
             ]
         );
     }
-    
-    
 }

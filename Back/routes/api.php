@@ -28,10 +28,11 @@ use App\Http\Controllers\Api\UserHasRoleController;
 
 
 
- 
+
 Route::prefix('role-has-permission')->group(function () {
     Route::post('/add', [RoleHasPermissionController::class, 'add']);
     Route::get('/list-permission-for-role-id/{id}', [RoleHasPermissionController::class, 'listPermissionForRoleID']);
+    Route::delete('/destroy', [RoleHasPermissionController::class, 'destroy']);
 });
 Route::prefix('permissions')->name('permissions.')->group(function () {
     Route::get('/list', [PermissionController::class, 'listPermission'])->name('list');
@@ -40,20 +41,16 @@ Route::get('/getUserRole/{userId}', [UserHasRoleController::class, 'getUserRole'
 
 
 Route::get('/getUserRole/{userId}', [UserHasRoleController::class, 'getUserRole']);
-Route::prefix('/categories')->group(function() {
-Route::get('/transhed-category',[CategoryController::class, 'showTrashedCategories'])->name('showTrashedCategories');
-Route::post('/restore/{id}',[CategoryController::class, 'restore'])->name('restore');
-
+Route::prefix('/categories')->group(function () {
+    Route::get('/transhed-category', [CategoryController::class, 'showTrashedCategories'])->name('showTrashedCategories');
+    Route::post('/restore/{id}', [CategoryController::class, 'restore'])->name('restore');
 });
 
-Route::prefix('/rams')->group(function() {
-    Route::get('/transhed-ram',[RamController::class, 'showTrashedRam'])->name('showTrashedRam');
-    Route::post('/restore/{id}',[RamController::class, 'restore'])->name('restore');
-    
+Route::prefix('/rams')->group(function () {
+    Route::get('/transhed-ram', [RamController::class, 'showTrashedRam'])->name('showTrashedRam');
+    Route::post('/restore/{id}', [RamController::class, 'restore'])->name('restore');
 });
-Route::prefix('/roms')->group(function() {
-    Route::get('/transhed-rom',[RomController::class, 'showTrashedRom'])->name('showTrashedRom');
-    Route::post('/restore/{id}',[RomController::class, 'restore'])->name('restore');
-    
+Route::prefix('/roms')->group(function () {
+    Route::get('/transhed-rom', [RomController::class, 'showTrashedRom'])->name('showTrashedRom');
+    Route::post('/restore/{id}', [RomController::class, 'restore'])->name('restore');
 });
-

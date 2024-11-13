@@ -34,4 +34,6 @@ class DecentralizationController extends Controller
 
         return view('decentralization.add', compact('userRoles', 'users', 'roles'));
     }
+    function add(Request $request)
+    { }
 }

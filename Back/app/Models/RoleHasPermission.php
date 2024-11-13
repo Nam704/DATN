@@ -31,4 +31,8 @@ class RoleHasPermission extends Model
     {
         return $this->query()->where("role_id", $roleId)->where("permission_id", $permissionId)->exists();
     }
+    public function findRoleHasPermission($idRole, $idPermission)
+    {
+        return $this->query()->where('role_id', $idRole)->where("permission_id", $idPermission)->first();
+    }
 }

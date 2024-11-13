@@ -11,11 +11,14 @@ class RoleHasPermissionController extends Controller
 {
 
     protected $permission;
-    protected $roles;
+    protected $role;
+    protected $roleHasPermission;
+
     function __construct()
     {
         $this->permission = new Permission();
         $this->role = new Role();
+        $this->roleHasPermission = new RoleHasPermission();
     }
 
     function list()
@@ -29,5 +32,13 @@ class RoleHasPermissionController extends Controller
         $permissions = $this->permission->listPermission();
         $roles = $this->role->listRole();
         return view('role_has_permission.add', compact('permissions', 'roles'));
+    }
+    function getFormEdit($id)
+    {
+        $role = $this->role->query()->find($id);
+        $listIdPermissions = $this->roleHasPermission->listPermissionForRoleID($role->id);
+        $permission = $this->permission;
+        // dd($permission);
+        return view('role_has_permission.edit', compact('listIdPermissions', 'role', 'permission'));
     }
 }
