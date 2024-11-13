@@ -27,7 +27,7 @@
                 <form action="{{ route('admin.category.delete',$value->id) }}" method="post">
                     @method('delete')
                     @csrf
-                    <button onclick=" return confirm('Bạn Có Đông Ý Xóa Danh Mục Này')" class="btn btn-danger">delete</button>
+                    <button onclick=" return confirm('Are you sure you want to delete this data')" class="btn btn-danger">delete</button>
                 </form>
             </td>
            

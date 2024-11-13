@@ -35,8 +35,9 @@ class RamController extends Controller
         $ram = Ram::find($id);
         return view('ram.edit', compact('ram'));
     }
-    public function edit($id, RamRequest $req)
-    {
+
+    public function edit($id , RamRequest $req){
+
         $ram = Ram::find($id);
         $data = [
             'ram_size' => $req->ram_size

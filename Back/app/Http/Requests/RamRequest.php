@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Unique;
 
 class RamRequest extends FormRequest
 {
@@ -22,12 +23,21 @@ class RamRequest extends FormRequest
      */
     public function rules(): array
     {
+
+
+
+        $idRam = $this->route('id') ? $this->route('id') : "";
         return [
-            'ram_size' => [
-                'required',
-                'integer', 'max:16', 'min:1',
-                Rule::unique('rams', 'ram_size')
-            ]
+
+            'ram_size' =>
+            'required|unique:rams,ram_size',
+            'integer',
+            'max:16',
+            'min:1'
+          . $idRam,
+
+
+
         ];
     }
     public function messages(): array

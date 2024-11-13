@@ -32,7 +32,7 @@ class RomController extends Controller
         $rom = Rom::find($id);
         return view('rom.edit',compact('rom'));
     }
-    public function edit($id , Request $req){
+    public function edit($id , RomRequest $req){
         $rom = Rom::find($id);
         $data = [
             'rom_size' => $req->rom_size

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class CategoryController extends Controller
 {
@@ -17,7 +19,7 @@ class CategoryController extends Controller
     public function getFormAdd(){
         return view('./category.add');
     }
-    public function add(Request $req){
+    public function add(CategoryRequest $req){
         $req->validate([
             'name' => 'required|string|max:255'
         ]);
@@ -38,7 +40,7 @@ class CategoryController extends Controller
             'editCategory' => $editCategory
         ]);
     }
-    public function edit($id ,Request $req){
+    public function edit($id ,CategoryRequest $req){
         $editCategory = Category::find($id);
         
         
@@ -52,7 +54,7 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function delete($id){
+    public function deleteColor($id){
         $category = Category::find($id);
         
         $category ->delete();

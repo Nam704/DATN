@@ -8,7 +8,13 @@
             ram_site:
 
             <input type="number" name="ram_size" class="form-controll" id="ram_size" value="{{ $ram->ram_size }}">
+            @error('ram_size')
+            {{ $message }}
+                
+            @enderror
+       
         </div>
+       
         <button>Submit</button>
 
     </form>
