@@ -17,6 +17,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'status'
     ];
     protected $hidden = [
         'password',
@@ -28,7 +29,7 @@ class User extends Authenticatable
     protected $dates = ['deleted_at'];
     public function listUser()
     {
-        return $users = $this->query()->select('id', 'name', 'email')->latest('id')->paginate(10);
+        return $users = $this->query()->select('id', 'name', 'email', 'status')->latest('id')->paginate(10);
     }
     // Trong model User
     public function isAdmin(): bool
@@ -41,5 +42,11 @@ class User extends Authenticatable
 
         // Kiểm tra điều kiện admin
         return $isAdmin && $isAdmin->role_id == 1 && $isAdmin->status == 0;
+    }
+    public function changeStatusUser($status)
+    {
+        $status = $status == 0 ? 1 : 0;
+        $data = ["status" => $status];
+        $this->update($data);
     }
 }

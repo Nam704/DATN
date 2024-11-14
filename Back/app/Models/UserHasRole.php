@@ -9,6 +9,7 @@ class UserHasRole extends Model
 {
     use HasFactory;
     protected $table = 'user_has_roles';
+    protected $fillable = ["user_id", "role_id"];
     public function role()
     {
         return $this->belongsTo(Role::class, 'role_id');
@@ -25,5 +26,21 @@ class UserHasRole extends Model
             ->select('permissions.display_name')->get();
         // return $permissions->pluck('display_name')->toArray();
         return $permissions;
+    }
+    public function isUserExist($idUser)
+    {
+        return $this->where("user_id", $idUser)->exists();
+    }
+    public function isRoleExist($idRole)
+    {
+        return $this->where("role_id", $idRole)->exists();
+    }
+    public function isUserHasRoleExist($idRole, $idUser)
+    {
+        return $this->where("role_id", $idRole)->where("user_id", $idUser)->exists();
+    }
+    public function findThisByUserId($idUser)
+    {
+        return $this->where("user_id", $idUser)->first();
     }
 }

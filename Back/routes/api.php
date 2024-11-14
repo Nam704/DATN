@@ -6,10 +6,11 @@ use App\Http\Controllers\Api\RoleHasPermissionController;
 
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ColorController;
+use App\Http\Controllers\Api\DecentralizationController;
 use App\Http\Controllers\Api\RamController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\RomController;
-
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserHasRoleController;
@@ -30,8 +31,22 @@ use App\Http\Controllers\Api\UserHasRoleController;
 //     return $request->user();
 // });
 
+Route::prefix('users')->group(function () {
+    // Route::get('list', [UserController::class, 'listUser'])->name('list');
+    // Route::get('/add', [UserController::class, 'getFormAdd'])->name('getFormAdd');
+    // Route::post('/add', [UserController::class, 'add'])->name('add');
+    // Route::delete('/delete/{user}', [UserController::class, 'destroy'])->name('destroy');
+    // Route::get('/update/{user}', [UserController::class, 'getFormUpdate'])->name('getFormUpdate');
+    Route::put('/edit', [UserController::class, 'edit']);
+});
+Route::prefix('decentralization')->name('decentralization.')->group(
+    function () {
 
-
+        // Route::get('/list', [DecentralizationController::class, 'list'])->name('list');
+        // Route::get('/add', [DecentralizationController::class, 'getFormAdd'])->name('getFormAdd');
+        Route::post('/edit', [DecentralizationController::class, 'edit']);
+    }
+);
 
 Route::prefix('role-has-permission')->group(function () {
     Route::post('/add', [RoleHasPermissionController::class, 'add']);
@@ -60,18 +75,16 @@ Route::prefix('/roms')->group(function () {
 });
 
 
-Route::prefix('/colors')->group(function(){
+Route::prefix('/colors')->group(function () {
     Route::get('/tranShed-color', [ColorController::class, 'showTranshedColor'])->name('showTranshedColor');
     Route::post('/restore/{id}', [ColorController::class, 'restore'])->name('restore');
 });
 
-Route::prefix('/brands')->group(function(){
+Route::prefix('/brands')->group(function () {
     Route::get('/tranShed-brand', [BrandController::class, 'showTranshedBrand'])->name('showTranshedColor');
     Route::post('/restore/{id}', [BrandController::class, 'restore'])->name('restore');
 });
-Route::prefix('/roles')->group(function(){
+Route::prefix('/roles')->group(function () {
     Route::get('/trashed-role', [RoleController::class, 'showTrashedRole'])->name('showTrashedRole');
     Route::post('/restore/{id}', [RoleController::class, 'restore'])->name('restore');
 });
-
-

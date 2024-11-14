@@ -25,7 +25,7 @@ class DecentralizationController extends Controller
 
         return view('decentralization.list', compact('userRoles'));
     }
-    function getFormAdd()
+    function getFormEdit()
     {
         $users = $this->user->query()->select('id', 'name')->get();
         $roles = $this->role->query()->select('id', 'display_name')->get();
@@ -34,6 +34,4 @@ class DecentralizationController extends Controller
 
         return view('decentralization.add', compact('userRoles', 'users', 'roles'));
     }
-    function add(Request $request)
-    { }
 }
