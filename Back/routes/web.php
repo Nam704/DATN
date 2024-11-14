@@ -51,6 +51,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
     Route::prefix('permissions')->name('permissions.')->group(function () {
         Route::get('list', [PermissionController::class, 'listPermission'])->name('list');
+        Route::get('/add', [PermissionController::class, 'getFormAdd'])->name('getFormAdd');
+        Route::post('/add',[PermissionController::class,'add'])->name('add');
+        Route::get('/edit/{id}', [PermissionController::class, 'editPermission'])->name('editPermission');
+        Route::put('/edit/{id}',[PermissionController::class,'edit'])->name('edit');
+        Route::delete('/delete/{id}',[PermissionController::class,'delete'])->name('delete');
+    
+
+
+
     });
     Route::prefix('role-has-permission')->name('rolePermissions.')->group(
         function () {

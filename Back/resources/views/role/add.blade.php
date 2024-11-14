@@ -9,6 +9,10 @@
         <div>
             name:
             <input type="text" name="name" id="name">
+            @error('name')
+            {{ $message }}
+                
+            @enderror
         </div>
         <div>
             display_name:

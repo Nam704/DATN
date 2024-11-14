@@ -15,7 +15,14 @@ class PermissionController extends Controller
     }
     function listPermission()
     {
-        $permissions = $this->permission->listPermissionID();
-        return response()->json(["permissions" => $permissions]);
+        $permissions = $this->permission->onlyTrashed()->get();
+        return response()->json(["data" => $permissions]);
+
+       
+    }
+    function restore($id)
+    {
+        $permission = $this->permission->withTrashed()->find($id);
+        $permission->restore();
     }
 }

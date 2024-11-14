@@ -40,6 +40,8 @@ Route::prefix('role-has-permission')->group(function () {
 });
 Route::prefix('permissions')->name('permissions.')->group(function () {
     Route::get('/list', [PermissionController::class, 'listPermission'])->name('list');
+    Route::post('/restore/{id}', [PermissionController::class, 'restore'])->name('restore');
+
 });
 Route::get('/getUserRole/{userId}', [UserHasRoleController::class, 'getUserRole']);
 
