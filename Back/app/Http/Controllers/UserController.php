@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\UserHasRole;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
 
     protected $user;
+    protected $userHasRole;
     function __construct()
     {
         $this->user = new User();
+        $this->userHasRole = new UserHasRole();
     }
     function listUser()
     {
@@ -28,18 +31,21 @@ class UserController extends Controller
         $data = [
             "name" => $request->name,
             "email" => $request->email,
-            // "password" => Hash::make($request->password),
+            "password" => Hash::make($request->password),
             "status" => $request->status
 
         ];
-        User::create($data);
+        // dd($data);
+        $newUser = $this->user->create($data);
+        $data = ["user_id" => $newUser->id, "role_id" => 3];
+        $this->userHasRole->create($data);
         return redirect()->route('admin.users.list');
     }
     function destroy(User $user)
     {
 
 
-        $user = User::find($id);
+        // $user = User::find($id);
         if (!$user) {
             return redirect()->route('users.users-list')->with(['errors' => 'User not found']);
         }
@@ -74,6 +80,7 @@ class UserController extends Controller
 
 
         ];
+        // dd($data);
         $user->update($data);
         return redirect()->route('admin.users.list')->with(['sucess' => 'user updated successfully']);
     }

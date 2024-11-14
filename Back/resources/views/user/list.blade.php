@@ -5,6 +5,7 @@
             <th>id</th>
             <th>user name</th>
             <th>email </th>
+            <th>status</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -14,6 +15,8 @@
             <td>{{ $item->id }}</td>
             <td>{{ $item->name }}</td>
             <td>{{ $item->email }}</td>
+            <td>{{ $item->status==0?"active":"lock" }}</td>
+
             <td>
                 <form action="{{ route('admin.users.destroy',$item) }}" method="POST">
                     @csrf

@@ -32,10 +32,12 @@
                     @endforeach
                 </select>
             </td>
-            <td><button>Save</button></td>
+            <td><button id="action-save">SAVE</button></td>
         </tr>
 
 
     </tbody>
 </table>
-<script src="{{ asset('js/decentralization-add.js') }}"></script>
+<div class="message">message</div>
+
+<script src="{{ asset('js/decentralization.js') }}"></script>

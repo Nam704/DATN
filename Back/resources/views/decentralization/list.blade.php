@@ -1,4 +1,6 @@
-<a href="{{ route('admin.decentralization.getFormAdd') }}">add new user with role</a>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<a href="{{ route('admin.decentralization.getFormEdit') }}">Edit</a>
 <table border="1">
     <thead>
         <tr>
@@ -32,17 +34,16 @@
             </td>
             <td>{{ $item->user->status==0?'active':'deactive' }}</td>
             <td>
-                <a type="button" class="btn btn-danger rounded-pill"
-                    href="{{-- route('admin.users.lock',$item->id) --}}">
+                <button type="button" name="lock-active" value="{{ $item->user->id }}"
+                    class="btn btn-danger rounded-pill" href="{{-- route('admin.users.lock',$item->id) --}}">
                     @if ($item->user->status==0)
                     {{ 'Lock' }}
                     @else
 
                     {{ 'Active' }}
                     @endif
-                </a>
-                <a type="button" class="btn btn-warning rounded-pill"
-                    href="{{-- route('admin.users.editUser',$item->id) --}}">Edit</a>
+                </button>
+
             </td>
 
         </tr>
@@ -52,3 +53,4 @@
     </tbody>
 </table>
 <a href="{{ route('dashboard') }}">back to dashboard</a>
+<script src="{{ asset('js/decentralization.js') }}"></script>
