@@ -5,6 +5,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\DecentralizationController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RamController;
 use App\Http\Controllers\RoleController;
@@ -49,6 +50,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
     Route::prefix('permissions')->name('permissions.')->group(function () {
         Route::get('list', [PermissionController::class, 'listPermission'])->name('list');
+        Route::get('/add', [PermissionController::class, 'getFormAdd'])->name('getFormAdd');
+        Route::post('/add',[PermissionController::class,'add'])->name('add');
+        Route::get('/edit/{id}', [PermissionController::class, 'editPermission'])->name('editPermission');
+        Route::put('/edit/{id}',[PermissionController::class,'edit'])->name('edit');
+        Route::delete('/delete/{id}',[PermissionController::class,'delete'])->name('delete');
+    
+
+
+
     });
     Route::prefix('role-has-permission')->name('rolePermissions.')->group(
         function () {
@@ -126,6 +136,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/edit/{id}', [BrandController::class, 'editBrand'])->name('editBrand');
             Route::put('/edit/{id}', [BrandController::class, 'edit'])->name('edit');
             Route::delete('/delete/{id}', [BrandController::class, 'deleteBrand'])->name('deleteBrand');
+        }
+    );
+    Route::prefix('images')->name('images.')->group(
+        function(){
+            Route::get('/list',[ImageController::class, 'list'])->name('list');
+            Route::get('/getFormAdd', [ImageController::class, 'getFormAdd'])->name('getFormAdd');
+            Route::post('/add', [ImageController::class, 'add'])->name('add');
+            // Route::get('/edit/{id}', [ImageController::class, 'editImage'])->name('editImage');
+            // Route::put('/edit/{id}', [ImageController::class, 'edit'])->name('edit');
+            // Route::delete('/delete/{id}',[ImageController::class, 'deleteBrand'])->name('deleteBrand');
+
         }
     );
 });
