@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('roms', function (Blueprint $table) {
             $table->id();
-            $table->integer('rom_size');
+            $table->integer('size');
+            $table->enum('unit', ['GB', 'TB'])->default('GB');
             $table->softDeletes();
             $table->timestamps();
         });

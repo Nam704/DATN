@@ -34,5 +34,8 @@
     <li>
         <a href="{{ route('admin.brands.list') }}">Brand</a>
     </li>
+    <li>
+        <a href="{{ route('admin.products.list') }}">Product</a>
+    </li>
 
 </ul>

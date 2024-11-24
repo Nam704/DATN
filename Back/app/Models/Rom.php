@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Rom extends Model
 {
-    
-    use HasFactory,SoftDeletes;
+
+    use HasFactory, SoftDeletes;
     protected $dates = [
         'deleted_at'
     ];
     protected $table = 'roms';
     protected $fillable = [
-        'rom_size'
+        'size'
     ];
 }

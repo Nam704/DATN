@@ -7,11 +7,19 @@
     <form action="{{ route('admin.rams.add') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div>
-            ram_site:
+            ram_size:
             <input type="number" name="ram_size" class="form-controll" id="ram_size">
+            <select name="unit" id="unit">
+                <option value="GB">
+                    GB
+                </option>
+                <option value="TB">
+                    TB
+                </option>
+            </select>
             @error('ram_size')
             {{ $message }}
-                
+
             @enderror
         </div>
         <button>Submit</button>

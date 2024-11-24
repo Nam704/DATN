@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\RoleHasPermissionController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ColorController;
 use App\Http\Controllers\Api\DecentralizationController;
+use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\RamController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\RomController;
@@ -31,6 +32,9 @@ use App\Http\Controllers\Api\UserHasRoleController;
 //     return $request->user();
 // });
 
+Route::prefix('products')->name('products.')->group(function () {
+    Route::get('/list', [ProductController::class, 'list'])->name('list');
+});
 Route::prefix('users')->group(function () {
     // Route::get('list', [UserController::class, 'listUser'])->name('list');
     // Route::get('/add', [UserController::class, 'getFormAdd'])->name('getFormAdd');

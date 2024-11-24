@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\DecentralizationController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RamController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RoleHasPermissionController;
@@ -31,6 +32,12 @@ Route::get('/', function () {
     return view('admin.dashboard');
 })->name('dashboard');
 Route::prefix('admin')->name('admin.')->group(function () {
+
+    Route::prefix('products')->name('products.')->group(function () {
+        Route::get('/list', [ProductController::class, 'list'])->name('list');
+        Route::get('/add', [ProductController::class, 'getFormAdd'])->name('getFormAdd');
+        Route::get('/edit/{id}', [ProductController::class, 'getFormEdit'])->name('getFormEdit');
+    });
     Route::prefix('users')->name('users.')->group(function () {
         Route::get('list', [UserController::class, 'listUser'])->name('list');
         Route::get('/add', [UserController::class, 'getFormAdd'])->name('getFormAdd');

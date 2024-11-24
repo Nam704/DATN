@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Ram extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
     protected $dates = [
         'deleted_at'
     ];
     protected $table = 'rams';
     protected $fillable = [
-        'ram_size'
+        'size', 'unit'
     ];
 }
